@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import '../../controller/hotel_controller.dart';
 
 
-class HotelHome extends StatelessWidget {
-  const HotelHome({super.key, required this.data});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key, required this.data});
 
   final data;
 

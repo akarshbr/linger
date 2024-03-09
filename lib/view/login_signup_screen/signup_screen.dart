@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../controller/sql_helper.dart';
 import 'login_screen.dart';
 
-class HotelSignup extends StatelessWidget {
-  HotelSignup({super.key});
+class SignupScreen extends StatelessWidget {
+  SignupScreen({super.key});
 
   final formkey = GlobalKey<FormState>();
 
@@ -17,7 +17,7 @@ class HotelSignup extends StatelessWidget {
     void registerUser(String name, String email, String password) async {
       var id = await SQLFunction.addUser(name, email, password);
       if (id != null) {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HotelLogin()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Registration Failed"), backgroundColor: Colors.redAccent));
       }

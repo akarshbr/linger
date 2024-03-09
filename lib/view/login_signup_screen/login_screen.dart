@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../controller/sql_helper.dart';
 
-class HotelLogin extends StatelessWidget {
-  HotelLogin({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
