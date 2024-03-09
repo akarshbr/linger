@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:linger/view/home_screen/home_screen.dart';
+import 'package:linger/view/login_signup_screen/signup_screen.dart';
 
 import '../../controller/sql_helper.dart';
+import '../admin_screen/admin_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -13,11 +16,11 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     void loginUser(String email, String password) async {
       if (email == "@admin" && password == "root123") {
-        //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HotelAdmin()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminScreen()));
       } else {
         var data = await SQLFunction.checkUserExist(email, password);
         if (data.isNotEmpty) {
-          //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HotelHome(data: data,)));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(data: data,)));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Invalid Email or password"),
@@ -115,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                 Text("Dont have an Account,"),
                 TextButton(
                     onPressed: () {
-                      //Navigator.push(context, MaterialPageRoute(builder: (context) => HotelSignup()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SignupScreen()));
                     },
                     child: Text(
                       "Sign UP",
