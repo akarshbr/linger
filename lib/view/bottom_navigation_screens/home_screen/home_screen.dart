@@ -11,12 +11,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var hotels = context.watch<HotelController>().hotel;
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: Container(
               height: 100,
               margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
               child: Row(
@@ -28,28 +27,18 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         "Hello ${data[0]["name"]}",
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
+                        style: TextStyle(fontSize: 20),
                       ),
-                      Text(
-                        "Find Your Favourite Hotel",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      )
+                      Text("Find Your Favourite Hotel", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
                     ],
                   ),
-                  CircleAvatar(
-                    radius: 30,
-                    child: Image(
-                      image: AssetImage("assets/user/stewie.png"),
-                      height: 60,
-                      width: 60,
-                    ),
-                  )
+                  CircleAvatar(radius: 30, child: Image(image: AssetImage("assets/user/stewie.png"), height: 60, width: 60))
                 ],
               ),
             ),
-            Padding(
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
               child: Material(
                 elevation: 10,
@@ -58,11 +47,7 @@ class HomeScreen extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(5),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: Colors.grey,
-                        size: 40,
-                      ),
+                      prefixIcon: Icon(Icons.search, color: Colors.grey, size: 40),
                       filled: true,
                       fillColor: Colors.grey.shade300,
                       focusColor: Colors.transparent,
@@ -73,14 +58,18 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
               child: Text(
                 "Popular Hotel",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            Container(
+          ),
+          SliverToBoxAdapter(
+            child: Container(
               padding: EdgeInsets.only(left: 10, right: 10),
               height: 230,
               child: ListView(
@@ -147,97 +136,94 @@ class HomeScreen extends StatelessWidget {
                 }),
               ),
             ),
-            Padding(
+          ),
+          SliverToBoxAdapter(
+            child: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10, top: 10),
               child: Text(
                 "Hotel Packages",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: hotelList.length,
-                  itemBuilder: (context, index) {
-                    var currentHotel = hotels[index];
-                    return Container(
+          ),
+          SliverList.builder(itemCount: hotelList.length, itemBuilder: (context, index) {
+            var currentHotel = hotels[index];
+            return Container(
+              height: 150,
+              margin: EdgeInsets.only(bottom: 10),
+              child: Card(
+                child: Stack(
+                  children: [
+                    Container(
                       height: 150,
-                      margin: EdgeInsets.only(bottom: 10),
-                      child: Card(
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: 150,
-                              width: 150,
-                              decoration: BoxDecoration(image: DecorationImage(image: AssetImage(currentHotel.image), fit: BoxFit.cover)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 170, top: 18),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    currentHotel.name,
-                                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: SingleChildScrollView(
-                                      scrollDirection: Axis.horizontal,
-                                      child: Text(
-                                        currentHotel.place,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.clip,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Text(
-                                      "₹${currentHotel.price}/ Night",
-                                      style: TextStyle(color: Colors.purple),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 5),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.local_parking,
-                                          color: Colors.purple,
-                                        ),
-                                        Icon(Icons.ac_unit, color: Colors.purple),
-                                        Icon(Icons.wifi, color: Colors.purple),
-                                        Icon(Icons.wine_bar, color: Colors.purple)
-                                      ],
-                                    ),
-                                  )
-                                ],
+                      width: 150,
+                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage(currentHotel.image), fit: BoxFit.cover)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 170, top: 18),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            currentHotel.name,
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Text(
+                                currentHotel.place,
+                                maxLines: 1,
+                                overflow: TextOverflow.clip,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 320, top: 60),
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Book",
-                                  style: TextStyle(color: Colors.white),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Text(
+                              "₹${currentHotel.price}/ Night",
+                              style: TextStyle(color: Colors.purple),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.local_parking,
+                                  color: Colors.purple,
                                 ),
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(Colors.purple),
-                                  shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: Colors.purple))),
-                                ),
-                              ),
-                            )
-                          ],
+                                Icon(Icons.ac_unit, color: Colors.purple),
+                                Icon(Icons.wifi, color: Colors.purple),
+                                Icon(Icons.wine_bar, color: Colors.purple)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 320, top: 60),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Book",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.purple),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(color: Colors.purple))),
                         ),
                       ),
-                    );
-                  }),
-            )
-          ],
-        ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          })
+        ],
       ),
     );
   }
