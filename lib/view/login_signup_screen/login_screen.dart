@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     void loginUser(String email, String password) async {
       if (email == "@admin" && password == "root123") {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => AdminScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => AdminScreen()));
       } else {
         var data = await SQLFunction.checkUserExist(email, password);
         if (data.isNotEmpty) {
@@ -90,6 +90,8 @@ class LoginScreen extends StatelessWidget {
                 var valid = formkey.currentState!.validate();
                 if (valid == true) {
                   loginUser(emailController.text, passwordController.text);
+                  emailController.clear();
+                  passwordController.clear();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("Please Verify All the Fields"),

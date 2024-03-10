@@ -10,7 +10,8 @@ class SignupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var nameController = TextEditingController();
+    var firstNameController = TextEditingController();
+    var lastNameController = TextEditingController();
     var emailController = TextEditingController();
     var passwordController = TextEditingController();
 
@@ -41,13 +42,27 @@ class SignupScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: TextFormField(
-                controller: nameController,
+                controller: firstNameController,
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.person),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                  hintText: "Name",
+                  hintText: "First Name",
                   hintStyle: TextStyle(color: Colors.purple),
-                  labelText: "Name",
+                  labelText: "First Name",
+                  labelStyle: TextStyle(color: Colors.purple),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+              child: TextFormField(
+                controller: lastNameController,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  hintText: "Last Name",
+                  hintStyle: TextStyle(color: Colors.purple),
+                  labelText: "Last Name",
                   labelStyle: TextStyle(color: Colors.purple),
                 ),
               ),
@@ -99,9 +114,9 @@ class SignupScreen extends StatelessWidget {
                   var users = await SQLFunction.checkUserRegistered(emailController.text);
                   if (users.isNotEmpty) {
                     ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text("User Already Registered!!!"), backgroundColor: Colors.redAccent));
+                        .showSnackBar(SnackBar(content: Text("Email Already Registered!!!"), backgroundColor: Colors.redAccent));
                   } else {
-                    registerUser(nameController.text, emailController.text, passwordController.text);
+                    registerUser("${firstNameController.text.trim()} ${lastNameController.text.trim()}", emailController.text.trim(), passwordController.text.trim());
                   }
                 } else {
                   ScaffoldMessenger.of(context)
