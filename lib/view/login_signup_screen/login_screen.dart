@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:linger/view/home_screen/home_screen.dart';
+import 'package:linger/view/current_screen/current_screen.dart';
 import 'package:linger/view/login_signup_screen/signup_screen.dart';
 
 import '../../controller/sql_helper.dart';
@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
       } else {
         var data = await SQLFunction.checkUserExist(email, password);
         if (data.isNotEmpty) {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(data: data,)));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CurrentScreen(data: data)));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Invalid Email or password"),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:linger/controller/bottom_navigation_bar_controller.dart';
 import 'package:linger/controller/hotel_controller.dart';
 import 'package:linger/view/login_signup_screen/login_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (context)=> HotelController())
+    ChangeNotifierProvider(create: (context)=> HotelController()),
+    ChangeNotifierProvider(create: (context)=> BottomNavigationBarController())
   ], child: const MyApp()));
 }
 

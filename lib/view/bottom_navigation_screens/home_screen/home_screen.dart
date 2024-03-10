@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../controller/hotel_controller.dart';
-
+import '../../../controller/hotel_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.data});
@@ -240,26 +239,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: Colors.purple,
-            ),
-            label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-              color: Colors.purple,
-            ),
-            label: "Explore"),
-        BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-              color: Colors.purple,
-            ),
-            label: "Profile")
-      ]),
     );
   }
 }
