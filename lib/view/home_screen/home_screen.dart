@@ -39,10 +39,13 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  Image(
-                    image: AssetImage("assets/music_album/MrMoraleandtheBigSteppers.png"),
-                    height: 60,
-                    width: 60,
+                  CircleAvatar(
+                    radius: 30,
+                    child: Image(
+                      image: AssetImage("assets/user/stewie.png"),
+                      height: 60,
+                      width: 60,
+                    ),
                   )
                 ],
               ),
