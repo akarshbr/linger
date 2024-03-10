@@ -31,7 +31,6 @@ class CurrentScreen extends StatelessWidget {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(icon: Icon(Icons.search), label: "Explore"),
-              BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile")
             ]);
       }),
     );

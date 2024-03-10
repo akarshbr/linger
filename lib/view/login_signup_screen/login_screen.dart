@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
             ),
             Image(
-              image: AssetImage("assets/hotel/hotellogo.png"),
+              image: AssetImage("assets/logo/hotellogo.png"),
               height: 100,
             ),
             Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linger/controller/bottom_navigation_bar_controller.dart';
 import 'package:linger/controller/hotel_controller.dart';
-import 'package:linger/view/login_signup_screen/login_screen.dart';
+import 'package:linger/view/splash_screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginScreen(),
+      home: SplashScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
